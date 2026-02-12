@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Only for Mitzi my bebilabs</title>
+
+<style>
+    body {
+        text-align: center;
+        font-family: Arial, sans-serif;
+       background-image: url('Mitzi.jpg');
+       background-size: cover;
+       background-position: center;  
+    background-repeat: no-repeat;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        overflow: hidden;
+    }
+
+    .text-bg {
+    position: relative;          
+    display: inline-block;       
+    padding: 20px 30px;          
+    color: white;                 
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #e268b3, #f1bde2);
+    background-size: cover;   
+    background-position: center; 
+    border-radius: 20px;          
+}
+
+    h1 {
+        font-size: 3rem;
+        color: white;
+        margin-bottom: 30px;
+    }
+
+    
+    .btn {
+        padding: 20px 40px;
+        font-size: 1.2rem;
+        border: none;
+        border-radius: 30px;
+        cursor: pointer;
+        margin: 10px;
+        transition: 0.2s ease;
+        position: relative;
+    }
+
+    #yesBtn {
+        background-color: #ff4d6d;
+        color: white;
+    }
+
+    #noBtn {
+        background-color: white;
+        color: #ff4d6d;
+    }
+
+    
+    .popup {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.6);
+    justify-content: center;
+    align-items: center;
+    z-index: 20;
+    }
+
+    .popup img {
+    width: 300px;
+    border-radius: 20px;
+    animation: bounce 0.8s ease;
+}
+
+    .popup-content {
+    background: white;
+    padding: 20px;
+    border-radius: 20px;
+    text-align: center;
+    animation: pop 0.5s ease, bounce 0.8s ease;
+}
+
+
+    @keyframes pop {
+        from { transform: scale(0.5); opacity: 0; }
+        to { transform: scale(1); opacity: 1; }
+    }
+
+    @keyframes bounce {
+    0% { transform: scale(0.7); }
+    50% { transform: scale(1.1); }
+    70% { transform: scale(0.95); }
+    100% { transform: scale(1); }
+}
+
+</style>
+</head>
+
+<body>
+<div class="text-bg">
+<h1>Will you be my Valentine?</h1>
+</div>
+
+<div class="button-container">
+    <button id="yesBtn" class="btn">YES</button>
+    <button id="noBtn" class="btn">NO</button>
+</div>
+
+
+
+<div id="yesPopup" class="popup">
+    <div class="popup-content">
+        <h2>YAYYY!!! 💕</h2>
+        <img src="https://media.giphy.com/media/MDJ9IbxxvDUQM/giphy.gif" alt="Valentine GIF">
+        <br><br>
+        <button onclick="closeYesPopup()" class="btn" style="background:#ff4d6d;color:white;">Close</button>
+    </div>
+</div>
+
+
+<div id="noPopup" class="popup">
+    <div class="popup-content">
+        <h2>are you gagoing me?</h2>
+        <img src="https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExNm1kbW5pbXFlcTIzcGp1OTNhdWcxa3NrcHF5M241ZjZhNzAyc2E5ZCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/hRm7Vg9sZTARsmzh49/giphy.gif" alt="Funny Reaction">
+        <br><br>
+        <button onclick="closeNoPopup()" class="btn" style="background:#ff4d6d;color:white;">Close</button>
+    </div>
+</div>
+
+<script>
+    
+const yesBtn = document.getElementById("yesBtn");
+
+yesBtn.addEventListener("click", function() {
+    document.getElementById("yesPopup").style.display = "flex";
+});
+    
+    const noBtn = document.getElementById("noBtn");
+let attemptCount = 0;
+
+noBtn.addEventListener("mouseover", function() {
+    attemptCount++;
+
+    
+    if (attemptCount < 4) {
+        noBtn.style.position = "absolute";
+        const x = Math.random() * (window.innerWidth - 150);
+        const y = Math.random() * (window.innerHeight - 70);
+        noBtn.style.left = x + "px";
+        noBtn.style.top = y + "px";
+    }
+    
+    else if (attemptCount === 4) {
+        document.getElementById("noPopup").style.display = "flex";
+        noBtn.style.position = "absolute";
+        const x = Math.random() * (window.innerWidth - 150);
+        const y = Math.random() * (window.innerHeight - 70);
+        noBtn.style.left = x + "px";
+        noBtn.style.top = y + "px";
+    }
+});
+
+
+noBtn.addEventListener("click", function() {
+    if (attemptCount >= 4) {
+        document.getElementById("noPopup").style.display = "flex";
+    }
+});
+
+    function closeYesPopup() {
+        document.getElementById("yesPopup").style.display = "none";
+    }
+
+    function closeNoPopup() {
+        document.getElementById("noPopup").style.display = "none";
+    }
+</script>
+
+</body>
+</html>
